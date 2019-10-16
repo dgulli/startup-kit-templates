@@ -214,7 +214,7 @@ Resources:
       KeyName: !Ref KeyName
       NetworkInterfaces:
         - NetworkInterfaceId: !Ref BastionNetworkInterface
-          DeviceIndex: 0
+          DeviceIndex: '0'
       ImageId: !FindInMap [ AMIMap, !Ref "AWS::Region", AMI ]
       UserData:
         Fn::Base64: !Sub |
@@ -225,7 +225,7 @@ Resources:
       IamInstanceProfile: !Ref BastionInstanceProfile
       Tags:
         - Key: Name
-          Value: startup-kit-bastion
+          Value: dg-bastion
     DependsOn: BastionEipAssociation
     CreationPolicy:
       ResourceSignal:
@@ -256,7 +256,7 @@ Resources:
       SourceDestCheck: true
       Tags:
         - Key: Name
-          Value: startup-kit-bastion
+          Value: dg-bastion
 
   BastionSecureLogGroup:
     Type: AWS::Logs::LogGroup
@@ -276,7 +276,7 @@ Resources:
         LogGroupName: !Ref BastionSecureLogGroup
         FilterPattern: "[Mon, day, timestamp, ip, id, status = Invalid, ...]"
         MetricTransformations:
-        - MetricValue: 1
+        - MetricValue: '1'
           MetricNamespace: SSH
           MetricName: sshInvalidUser
 
@@ -300,7 +300,7 @@ Resources:
         LogGroupName: !Ref BastionSecureLogGroup
         FilterPattern: "[Mon, day, timestamp, ip, id, msg1= Connection, msg2 = closed, ...]"
         MetricTransformations:
-        - MetricValue: 1
+        - MetricValue: '1'
           MetricNamespace: SSH
           MetricName: sshClosedConnection
 

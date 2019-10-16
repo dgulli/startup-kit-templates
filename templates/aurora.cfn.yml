@@ -127,14 +127,6 @@ Parameters:
       - true
       - false
 
-  # Default is 200 MB
-  DatabaseAlarmSwapUsageInBytes:
-    Default: 209715200
-    Type: Number
-    Description: Number of swap usage bytes for alarm (if enabled - Aurora MySQL only)
-    MinValue: 1
-    ConstraintDescription: Enter a value of at least one byte
-
   EnableAlarms:
     Default: false
     Type: String
